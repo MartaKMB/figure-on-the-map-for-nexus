@@ -1,0 +1,14 @@
+.container {
+    background-color: beige;
+    display: flex;
+    padding: 32px 24px;
+    border-radius: 12px;
+    margin: 32px;
+    flex-wrap: wrap;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    color: darkslateblue;
+}
