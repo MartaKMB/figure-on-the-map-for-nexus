@@ -14,9 +14,16 @@
 }
 
 .inputColor {
-    width: 100%;
     border: solid 1px darkslateblue;
     border-radius: 4px;
+    width: 75%;
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .button {
