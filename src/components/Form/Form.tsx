@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Form.module.css';
+import { HEX_API } from '../../constants/hexApi';
 
 interface FormProps {
   onFormSubmit(name: string, color: string): void;
@@ -11,10 +12,15 @@ export function Form({ onFormSubmit }: FormProps) {
   const [colorName, setColorName] = useState('');
 
   function handleLoadColor(hex: string) {
-    const hexFetch = hex.slice(1);
-    fetch(`https://www.thecolorapi.com/id?hex=${hexFetch}`)
+    const noHashHex = hex.slice(1);
+    try {
+      fetch(`${HEX_API}${noHashHex}`)
       .then((res) => res.json())
-      .then((res) => setColorName(res.name.value));
+      .then((res) => setColorName(res?.name?.value || 'no color name'));
+    } catch(error) {
+      console.warn(error);
+      setColorName('error: no color name');
+    }
   }
 
   return (
@@ -23,18 +29,18 @@ export function Form({ onFormSubmit }: FormProps) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(inputColor);
           onFormSubmit(inputName, inputColor);
         }}
       >
-        <label>name</label>
+        <label htmlFor="inputName">name</label>
         <input
           value={inputName}
           onChange={(e) => setInputName(e.target.value)}
           type='text'
           className={styles.input}
+          id="inputName"
         />
-        <label>choose color</label>
+        <label htmlFor='inputColor'>choose color</label>
         <div className={styles.inputContainer}>
           <input
             value={inputColor}
@@ -44,6 +50,7 @@ export function Form({ onFormSubmit }: FormProps) {
             }}
             type='color'
             className={styles.inputColor}
+            id="inputColor"
           />
           <p>{colorName}</p>
         </div>
