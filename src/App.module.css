@@ -32,10 +32,10 @@
 
 @media (min-width: 1024px) {
   .content > :first-child {
-    flex: 1 1 calc(25% - 12px);
+    flex: 1 1 calc(30% - 12px);
   }
 
   .content > :last-child {
-    flex: 3 1 calc(75% - 12px);
+    flex: 3 1 calc(70% - 12px);
   }
 }

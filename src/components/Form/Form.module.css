@@ -5,6 +5,11 @@
     flex-direction: column;
 }
 
+.title {
+    width: 100%;
+    text-align: center;
+}
+
 .input {
     width: 100%;
     padding: 8px;

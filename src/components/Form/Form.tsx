@@ -25,7 +25,7 @@ export function Form({ onFormSubmit }: FormProps) {
 
   return (
     <section className={styles.container}>
-      <h2>create your hero</h2>
+      <h2 className={styles.title}>create your hero</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
