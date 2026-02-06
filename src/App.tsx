@@ -14,10 +14,14 @@ function App() {
       <header className={styles.header}>
         <h1>Figure on the map</h1>
       </header>
-      <Form
-        onFormSubmit={(name: string, color: string) => setHeroAttributes({ heroName: name, color: color })}
-      />
-      <GameBoard heroAttributes={heroAttributes} />
+      <div className={styles.content}>
+        <Form
+          onFormSubmit={(name: string, color: string) =>
+            setHeroAttributes({ heroName: name, color: color })
+          }
+        />
+        <GameBoard heroAttributes={heroAttributes} />
+      </div>
     </main>
   );
 }
