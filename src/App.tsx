@@ -4,7 +4,6 @@ import { Form } from './components/Form/Form';
 import { GameBoard } from './components/GameBoard/GameBoard';
 
 function App() {
-  const [isHeroReady, setIsHeroReady] = useState(false);
   const [heroAttributes, setHeroAttributes] = useState({
     heroName: '',
     color: '',
@@ -16,12 +15,9 @@ function App() {
         <h1>Figure on the map</h1>
       </header>
       <Form
-        onFormSubmit={(name: string, color: string) => {
-          setIsHeroReady(true);
-          setHeroAttributes({ heroName: name, color: color });
-        }}
+        onFormSubmit={(name: string, color: string) => setHeroAttributes({ heroName: name, color: color })}
       />
-      <GameBoard withHero={isHeroReady} heroAttributes={heroAttributes} />
+      <GameBoard heroAttributes={heroAttributes} />
     </main>
   );
 }
