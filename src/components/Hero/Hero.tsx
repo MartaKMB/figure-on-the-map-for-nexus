@@ -1,41 +1,24 @@
 import styles from '../Hero/Hero.module.css';
-import { useKeyPress } from '../../hooks/useKeyPress';
 
 interface HeroProps {
   heroName: string;
   color: string;
+    position: {
+    x: number;
+    y: number;
+  };
 }
 
-export function Hero({ heroName, color }: HeroProps) {
-  const keyUpPressed = useKeyPress('ArrowUp');
-  const keyDownPressed = useKeyPress('ArrowDown');
-  const keyLeftPressed = useKeyPress('ArrowLeft');
-  const keyRightPressed = useKeyPress('ArrowRight');
+export function Hero({ heroName, color, position }: HeroProps) {
   return (
     <>
-      <div className={styles.container}>
-        {heroName.length > 0 && <div className={styles.name}>{heroName}</div>}
-        <div className={`${styles.hero} ${styles.color}`}>HERO {color}</div>
-      </div>
-      <div>
-        {keyUpPressed
-          ? 'Naciśnięto ↑ ArrowUp!'
-          : 'Naciśnij ↑ ArrowUp (skup fokus na Hero)'}
-      </div>
-      <div>
-        {keyLeftPressed
-          ? 'Naciśnięto ArrowLeft!'
-          : 'Naciśnij ArrowLeft (skup fokus na Hero)'}
-      </div>
-      <div>
-        {keyRightPressed
-          ? 'Naciśnięto ArrowRight!'
-          : 'Naciśnij ArrowRight (skup fokus na Hero)'}
-      </div>
-      <div>
-        {keyDownPressed
-          ? 'Naciśnięto ArrowDown!'
-          : 'Naciśnij ArrowDown (skup fokus na Hero)'}
+      <div className={styles.container} style={{
+        gridColumn: position.x,
+        gridRow: position.y,
+      }}
+      tabIndex={0}>
+        {heroName.length > 0 && <div className={styles.name} style={{color: color}}>{heroName}</div>}
+        <div className={styles.hero} style={{backgroundColor: color}}>HERO {color}</div>
       </div>
     </>
   );
